@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UploadBooks from "./components/UploadBooks";
 import About from "./components/About";
 import PersonalArea from "./components/PersonalArea";
+import SignIn from "./components/SignIn";
+import ForgotPassword from "./components/ForgotPassword";
 function App() {
   return (
     <BrowserRouter>
@@ -26,12 +28,26 @@ function App() {
             </div>
           } />
 
+        <Route path="SignIn" element=
+          {
+            <div>
+              <SignIn />
+            </div>
+          } />
+
+        <Route path="ForgotPassword" element=
+          {
+            <div>
+              <ForgotPassword />
+            </div>
+          } />
+
         <Route path="Home" element=
           {
             <div>
               <Navbar />
               <Home />
-              
+
             </div>
           } />
 
