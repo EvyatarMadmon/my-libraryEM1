@@ -10,6 +10,7 @@ function PersonalArea() {
             />
             <div className='bg-black/30 absolute top-0 left-0 w-full h-screen' >
                 <div className='absolute top-0 w-full h-full flex flex-col justify-center items-center text-white' >
+                                
                 </div>
             </div>
         </div>

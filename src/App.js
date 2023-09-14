@@ -2,6 +2,7 @@ import Hero from "./components/Hero";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UploadBooks from "./components/UploadBooks";
 import About from "./components/About";
@@ -30,6 +31,7 @@ function App() {
             <div>
               <Navbar />
               <Home />
+              
             </div>
           } />
 

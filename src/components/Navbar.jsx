@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+
+  const closeNav = () => {
+    setNav(false);
+    document.body.style.overflow = 'scroll';
+  };
+
   const handleNav = () => {
     setNav(!nav);
     if (!nav) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'scroll'
+      document.body.style.overflow = 'scroll';
     }
   };
 
@@ -26,10 +31,18 @@ const Navbar = () => {
         }
       >
         <ul className='flex flex-col fixed w-full h-full items-center justify-center'>
-          <li className='font-bold text-3xl p-8'><Link to ="/Home"> Home </Link></li>
-          <li className='font-bold text-3xl p-8'><Link to ="/UploadingBooks"> UploadingBooks </Link></li>
-          <li className='font-bold text-3xl p-8'><Link to ="/PersonalArea"> Personal Area </Link></li>
-          <li className='font-bold text-3xl p-8'><Link to ="/About"> About </Link></li>
+          <li className='font-bold text-3xl p-8'>
+            <Link to="/Home" onClick={closeNav}>Home</Link>
+          </li>
+          <li className='font-bold text-3xl p-8'>
+            <Link to="/UploadingBooks" onClick={closeNav}>UploadingBooks</Link>
+          </li>
+          <li className='font-bold text-3xl p-8'>
+            <Link to="/PersonalArea" onClick={closeNav}>Personal Area</Link>
+          </li>
+          <li className='font-bold text-3xl p-8'>
+            <Link to="/About" onClick={closeNav}>About</Link>
+          </li>
         </ul>
       </div>
     </div>
