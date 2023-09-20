@@ -36,89 +36,134 @@ const SignIn = () => {
             <div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
             <div className='absolute top-0 w-full h-full flex flex-col justify-center items-center text-white' />
 
-           
-                <div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
-                <div className='absolute top-0 w-full h-full flex flex-col justify-center text-white' />
-               
-                <form
+
+            <div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
+            <div className='absolute top-0 w-full h-full flex flex-col justify-center text-white' />
+
+            <form
                 className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md mx-auto z-10'
                 onSubmit={handleSubmit}
             >
-             <h2 className='text-4xl text-center text-yellow-400 font-bold mb-6'>Registration form</h2>
-                    <div className="mb-4">
-                        <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="firstName">
-                            First name:
-                        </label>
-                        <input
-                            className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="firstName"
-                            name="firstName"
-                            type="text"
-                            placeholder="First name"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="lastName">
+                <h2 className='text-4xl text-center text-yellow-400 font-bold mb-6'>Registration form</h2>
+                <div className="mb-4">
+                    <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="firstName">
+                        First name:
+                    </label>
+                    <input
+                        className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        placeholder="First name"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="lastName">
                         Last Name:
-                        </label>
-                        <input
-                            className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="lastName"
-                            name="lastName"
-                            type="text"
-                            placeholder="Last Name"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="birthdate">
+                    </label>
+                    <input
+                        className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        placeholder="Last Name"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="birthdate">
                         birthdate:
-                        </label>
-                        <input
-                            className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="birthdate"
-                            name="birthdate"
-                            type="date"
-                            value={formData.birthdate}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="gender">
-                            Gender:
-                        </label>
-                        <select
-                            className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="gender"
-                            name="gender"
-                            value={formData.gender}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="male">male</option>
-                            <option value="female">female</option>
-                            <option value="other">other</option>
-                        </select>
-                    </div>
-                  
-                    {/* ניתן להוסיף כאן יותר שדות לפי הצורך */}
-                    <div className="mb-4">
-                        <button
-                            type="submit"
-                            className="bg-blue-500 hover:bg-blue-700/30 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-                        >
-                        <Link to ="/Login">
+                    </label>
+                    <input
+                        className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="birthdate"
+                        name="birthdate"
+                        type="date"
+                        value={formData.birthdate}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="gender">
+                        Gender:
+                    </label>
+                    <select
+                        className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="gender"
+                        name="gender"
+                        value={formData.gender}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="other">other</option>
+                    </select>
+                </div>
+
+                <div className="mb-4">
+                    <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="lastName">
+                        Email:
+                    </label>
+                    <input
+                        className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="email"
+                        type="email"
+                        placeholder="Enter your email"
+                        value={formData.Email}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="lastName">
+                        Password:
+                    </label>
+                    <input
+                        className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="password"
+                        type="password"
+                        placeholder="Enter your password"
+                        value={formData.Password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="lastName">
+                        Confirm Password:
+                    </label>
+                    <input
+                        className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="password"
+                        type="password"
+                        placeholder="Enter your password"
+                        value={formData.Password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                {/* ניתן להוסיף כאן יותר שדות לפי הצורך */}
+                <div className="mb-4">
+                    <button
+                        type="submit"
+                        className="bg-blue-500 hover:bg-blue-700/30 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                    >
+                        <Link to="/Login">
                             Sign-in
-                            </Link>
-                        </button>
-                    </div>
-                </form>
+                        </Link>
+                    </button>
+                </div>
+            </form>
 
         </div>
     );
