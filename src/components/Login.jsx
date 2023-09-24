@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         // Here you can handle the login logic
+        const response = await axios.post('http://localhost:3001/src/components/Login',{
+            email: email,
+            password: password,
+        });
+
+        //
         console.log('Email:', email);
         console.log('Password:', password);
     };

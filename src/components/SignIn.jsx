@@ -137,7 +137,7 @@ const SignIn = () => {
                     />
                 </div>
 
-                <div className="mb-4">
+                {/* <div className="mb-4">
                     <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="lastName">
                         Confirm Password:
                     </label>
@@ -150,7 +150,7 @@ const SignIn = () => {
                         onChange={handleChange}
                         required
                     />
-                </div>
+                </div> */}
 
                 {/* ניתן להוסיף כאן יותר שדות לפי הצורך */}
                 <div className="mb-4">
