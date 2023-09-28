@@ -1,24 +1,41 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Routes,
+    Outlet,
+    useNavigate,
+  } from "react-router-dom";
+  
 import axios from 'axios';
 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Here you can handle the login logic
-        const response = await axios.post('http://localhost:3001/src/components/Login',{
-            email: email,
-            password: password,
-        });
-
-        //
         console.log('Email:', email);
         console.log('Password:', password);
+        // Here you can handle the login logic
+        try{
+            const response = await axios.post('http://localhost:3001/components/Login',{
+                email: email,
+                password: password,
+            });
+
+            navigate("/Home");
+
+        } catch (error) {
+            console.log(error);
+            setTimeout(() => {
+              navigate("/SignIn");
+            }, 2500);
+        }
+        
     };
 
     return (
@@ -32,7 +49,7 @@ const Login = () => {
                 <div className='absolute top-0 w-full h-full flex flex-col justify-center items-center text-white text-center'>
                     <div className='bg-sky-200/30 p-8 rounded-3xl'>
                         <h2 className="text-2xl font-bold mb-4 text-center text-white">Login</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form id="loginForm" onSubmit={handleSubmit}>
                             <div className="mb-4">
                                 <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
                                     Email:
@@ -63,17 +80,17 @@ const Login = () => {
                                 className="bg-blue-500 mt-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                                 type="submit"
                             >
-                            <Link to= "/Home">
+                            
                                 Login
-                                </Link>
+                                
                             </button>
                             <button
                                 className="bg-blue-500 mt-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                                 type="submit"
                             >
-                            <Link to= "/SignIn">
+                            
                                 Sign in
-                                </Link>
+                                
                             </button>
                         </form>
 

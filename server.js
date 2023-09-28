@@ -2,12 +2,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const app = express()
+const cors = require('cors');
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 try{
     mongoose.connect('mongodb+srv://0526604945:henyair2002@cluster0.ddnnane.mongodb.net/?retryWrites=true&w=majority',{
-        useNewUrlParser : true,
-        userUnifiedTopology : true
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     });
     console.log('connected to mongoDB atlas:');
 }catch(error){
@@ -35,32 +40,31 @@ const booksSchema = new mongoose.Schema({
 const User = mongoose.model("User",userSchema);
 const Book = mongoose.model("Book",booksSchema);
 
-const user1 = new User({
-    firstName : "hen"
-})
 
-user1.save();
 
-app.post('/src/components/SingIn.jsx',async(req,res)=>{
+app.post('/components/SingIn',async(req,res)=>{
     try{
+        console.log("hahahahah")
+        console.log(req.body.email);
+        console.log("hahahahah");
         const existUser = await User.findOne({email:req.body.email})
         if(existUser){
             return res.status(400).send({massage:'email already exists'});
         }
-        const hash = bcrypt.hashSync(req.body.password,salt);
 
         const newUser = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            birthDate:req.body.birthDate,
+            birthDate:req.body.birthdate,
             gender:req.body.gender,
-            email:req.body.email,
-            password:req.body.password,
+            email:req.body.Email,
+            password:req.body.Password,
         })
-
         try{
-            const savedUser = await newUser.save();
+            console.log(newUser)
+            await newUser.save();
         }catch(error){
+            console.log("you cant signup")
             res.status(500).send(error)
         }
         res.status(201).send({massage:'user created successfully'});
@@ -72,13 +76,17 @@ app.post('/src/components/SingIn.jsx',async(req,res)=>{
 })
 
 
-app.post('src/components/Login',async (req,res)=>{
+app.post('/components/Login',async (req,res)=>{
+    console.log('Request Body:', req.body);
     const existUser = await User.findOne({email: req.body.email});
+    console.log(existUser)
     if(existUser){
+        console.log("you connected to the web")
         return res.status(200).json({massage: existUser});
     }else{
-        res.status(400).send({massage: 'user does not exit'});
+        console.log("you falied to the web")
+        res.status(404).send({massage: 'user does not exit'});
     }
 })
 
-app.listen(3001,()=>{console.log("server stated on port 3000")})
+app.listen(3001,()=>{console.log("server stated on port 3001")})

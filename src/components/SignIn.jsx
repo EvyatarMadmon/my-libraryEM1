@@ -1,29 +1,43 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Routes,
+    Outlet,
+    useNavigate,
+  } from "react-router-dom";
+import axios from 'axios';
 
 const SignIn = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        birthdate: '',
-        gender: 'male',
-        address: '',
-        phoneNumber: '',
-        // ניתן להוסיף יותר שדות כאן לפי הצורך
-    });
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [birthdate, setBirthDate] = useState('');
+    const [gender, setGender] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // כאן תוכל להוסיף לוגיקה נוספת לחיפוש, כמו לשלב את formData בשאילתת ההרשמה או לעשות משהו אחר
-        alert('Form submitted with data: ' + JSON.stringify(formData));
+        try{
+            console.log("hen yair the king ");
+            const response = await axios.post('http://localhost:3001/components/SingIn',{
+            firstName:firstName,
+            lastName:lastName,
+            birthdate:birthdate,
+            gender:gender,
+            Email:email,
+            Password:password,
+        });
+        navigate("/Home");
+        } catch (error) {
+            console.log(error);
+            setTimeout(() => {
+              navigate("/Login");
+            }, 2500);
+        }
     };
 
     return (
@@ -55,8 +69,8 @@ const SignIn = () => {
                         name="firstName"
                         type="text"
                         placeholder="First name"
-                        value={formData.firstName}
-                        onChange={handleChange}
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                         required
                     />
                 </div>
@@ -70,8 +84,8 @@ const SignIn = () => {
                         name="lastName"
                         type="text"
                         placeholder="Last Name"
-                        value={formData.lastName}
-                        onChange={handleChange}
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                         required
                     />
                 </div>
@@ -84,8 +98,8 @@ const SignIn = () => {
                         id="birthdate"
                         name="birthdate"
                         type="date"
-                        value={formData.birthdate}
-                        onChange={handleChange}
+                        value={birthdate}
+                        onChange={(e) => setBirthDate(e.target.value)}
                         required
                     />
                 </div>
@@ -97,8 +111,8 @@ const SignIn = () => {
                         className="appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="gender"
                         name="gender"
-                        value={formData.gender}
-                        onChange={handleChange}
+                        value={gender}
+                        onChange={(e) => setGender(e.target.value)}
                         required
                     >
                         <option value="male">male</option>
@@ -116,8 +130,8 @@ const SignIn = () => {
                         id="email"
                         type="email"
                         placeholder="Enter your email"
-                        value={formData.Email}
-                        onChange={handleChange}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
@@ -131,8 +145,8 @@ const SignIn = () => {
                         id="password"
                         type="password"
                         placeholder="Enter your password"
-                        value={formData.Password}
-                        onChange={handleChange}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
@@ -158,9 +172,9 @@ const SignIn = () => {
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700/30 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
                     >
-                        <Link to="/Login">
-                            Sign-in
-                        </Link>
+
+                        Sign-in
+                        
                     </button>
                 </div>
             </form>
