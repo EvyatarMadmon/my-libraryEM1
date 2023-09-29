@@ -9,7 +9,12 @@ import About from "./components/About";
 import PersonalArea from "./components/PersonalArea";
 import SignIn from "./components/SignIn";
 import ForgotPassword from "./components/ForgotPassword";
+
+
 function App() {
+
+
+  
   return (
     <BrowserRouter>
       <Routes>
